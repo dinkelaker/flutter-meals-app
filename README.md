@@ -1,6 +1,6 @@
 # meals_app
 
-A new Flutter project.
+A dart app tp manage meals and demonstrate sophisticated navigation.
 
 ## Getting Started
 
