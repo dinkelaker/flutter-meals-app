@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'widgets/categories_screen.dart';
+import 'widgets/category_meals_screen.dart';
 
 import 'dummy_data.dart';
 
@@ -28,27 +29,12 @@ class MyApp extends StatelessWidget {
               //fontFamily: 'RobotoCondensed',
             )),
       ),
-      home: MyHomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (ctxt) => CategoriesScreen(categories: DUMMY_CATEGORIES),
+        CategoryMealsScreen.routeName: (ctxt) => CategoryMealsScreen(),
+      },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return CategoriesScreen(categories: DUMMY_CATEGORIES);
-    //  Scaffold(
-    //   appBar: AppBar(
-    //     title: const Text('Deli Meals'),
-    //   ),
-    //   body: Center(
-    //     child: CategoriesScreen(categories: DUMMY_CATEGORIES),
-    //   ),
-    // );
-  }
-}
