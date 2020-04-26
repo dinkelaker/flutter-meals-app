@@ -4,7 +4,6 @@ import '../models/category.dart';
 
 import 'category_item.dart';
 
-
 class CategoriesScreen extends StatelessWidget {
   final List<Category> categories;
 
@@ -18,15 +17,13 @@ class CategoriesScreen extends StatelessWidget {
       ),
       body: GridView(
         padding: EdgeInsets.all(15),
-        children: 
-
-          categories.map(
-            (catData) => CategoryItem(
-                catData.title, 
-                catData.color,
-              )
-          )
-          .toList(),
+        children: categories
+            .map((catData) => CategoryItem(
+                  catData.id,
+                  catData.title,
+                  catData.color,
+                ))
+            .toList(),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 200,
           childAspectRatio: 3 / 2,
