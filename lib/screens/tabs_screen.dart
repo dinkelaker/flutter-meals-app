@@ -13,27 +13,47 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
+  final List<Widget> _tabPages = [
+    CategoriesScreen(categories: DUMMY_CATEGORIES),
+    FavoritesScreen(),
+  ];
+
+  int selectedTabPageIndex = 0;
+
+  void _selectTabPage(int value) {
+    setState(() {
+      selectedTabPageIndex = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
+      initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
           title: Text('Deli Meals'),
-          bottom: TabBar(
-            tabs: <Widget>[
-              Tab(
-                icon: Icon(Icons.category),
-                text: 'Categories',
-              ),
-              Tab(icon: Icon(Icons.star), text: 'Favorites')
-            ],
-          ),
         ),
-        body: TabBarView(children: <Widget>[
-          CategoriesScreen(categories: DUMMY_CATEGORIES),
-          FavoritesScreen(),
-        ])
+        body: _tabPages[selectedTabPageIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: _selectTabPage,
+          backgroundColor: Theme.of(context).primaryColor,
+          unselectedItemColor: Colors.white,
+          selectedItemColor: Theme.of(context).accentColor,
+          currentIndex: selectedTabPageIndex,
+          //type: BottomNavigationBarType.shifting,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.category),
+              title: Text('Categories'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.star),
+              title: Text('Favorites'),
+            ),
+          ],
+        ),
       ),
     );
   }
