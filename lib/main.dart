@@ -36,10 +36,19 @@ class MyApp extends StatelessWidget {
         CategoryMealsScreen.routeName: (ctxt) => CategoryMealsScreen(),
         MealDetailsScreen.routeName: (ctxt) => MealDetailsScreen()
       },
-      onGenerateRoute: (settings) {
-        return MaterialPageRoute(builder: (context) => CategoriesScreen(categories: DUMMY_CATEGORIES));
+      // onGenerateRoute: (settings) {
+      //   return MaterialPageRoute(builder: (context) => CategoriesScreen(categories: DUMMY_CATEGORIES));
+      // },
+      onUnknownRoute: (settings) {
+        final routeName = settings.name;
+        final routeArgs = settings.arguments as Map<String, String>;
+
+        print(
+            'WARNING: Unknown page route "$routeName" with arguments "$routeArgs"');
+        return MaterialPageRoute(
+            builder: (context) =>
+                CategoriesScreen(categories: DUMMY_CATEGORIES));
       },
     );
   }
 }
-
