@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/meal_item.dart';
+import '../widgets/meal_details.dart';
 
 import '../dummy_data.dart';
 
@@ -21,13 +21,15 @@ class MealDetailsScreen extends StatelessWidget {
         title: Text(selectedMealTitle),
       ),
       body: 
-          MealItem(
+          MealDetails(
             id: selectedMeal.id,
             title: selectedMeal.title,
             imageUrl: selectedMeal.imageUrl,
             complexity: selectedMeal.complexity,
             affordability: selectedMeal.affordability,
-            duration: selectedMeal.duration
+            duration: selectedMeal.duration,
+            ingredients: selectedMeal.ingredients,
+            steps: selectedMeal.steps
           ),
     );
   }

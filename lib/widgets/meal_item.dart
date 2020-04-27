@@ -23,27 +23,40 @@ class MealItem extends StatelessWidget {
   }) : super(key: key);
 
   String get complexityText {
-    switch(complexity) {
-      case Complexity.Simple: return 'Simple'; break;
-      case Complexity.Challenging: return 'Callenging'; break;
-      case Complexity.Hard: return 'Hard'; break;
-      default: return 'Unknown';
+    switch (complexity) {
+      case Complexity.Simple:
+        return 'Simple';
+        break;
+      case Complexity.Challenging:
+        return 'Callenging';
+        break;
+      case Complexity.Hard:
+        return 'Hard';
+        break;
+      default:
+        return 'Unknown';
     }
   }
 
   String get affordabilityText {
-    switch(affordability) {
-      case Affordability.Affordable: return 'Affordable'; break;
-      case Affordability.Pricey: return 'Pricey'; break;
-      case Affordability.Luxurious: return 'Expensive'; break;
+    switch (affordability) {
+      case Affordability.Affordable:
+        return 'Affordable';
+        break;
+      case Affordability.Pricey:
+        return 'Pricey';
+        break;
+      case Affordability.Luxurious:
+        return 'Expensive';
+        break;
+      default:
+        return 'Unknown costs';
     }
   }
 
   void selectMeal(BuildContext ctxt) {
-    Navigator.of(ctxt).pushNamed(MealDetailsScreen.routeName, arguments: {
-      'id': id,
-      'title': title
-    });
+    Navigator.of(ctxt).pushNamed(MealDetailsScreen.routeName,
+        arguments: {'id': id, 'title': title});
   }
 
   @override
@@ -102,7 +115,8 @@ class MealItem extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         Icons.schedule,
-                      ),SizedBox(width: 6),
+                      ),
+                      SizedBox(width: 6),
                       Text('$duration min'),
                     ],
                   ),
@@ -110,7 +124,8 @@ class MealItem extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         Icons.work,
-                      ),SizedBox(width: 6),
+                      ),
+                      SizedBox(width: 6),
                       Text('$complexityText'),
                     ],
                   ),
@@ -118,7 +133,8 @@ class MealItem extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         Icons.attach_money,
-                      ),SizedBox(width: 6),
+                      ),
+                      SizedBox(width: 6),
                       Text('$affordabilityText'),
                     ],
                   ),
