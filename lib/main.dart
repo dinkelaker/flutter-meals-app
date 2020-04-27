@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'screens/categories_screen.dart';
-import 'screens/category_meals_screen.dart';
-import 'screens/meal_details_screen.dart';
-
-import 'dummy_data.dart';
+import './screens/tabs_screen.dart';
+import './screens/category_meals_screen.dart';
+import './screens/meal_details_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,7 +30,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (ctxt) => CategoriesScreen(categories: DUMMY_CATEGORIES),
+        '/': (ctxt) => TabsScreen(),
         CategoryMealsScreen.routeName: (ctxt) => CategoryMealsScreen(),
         MealDetailsScreen.routeName: (ctxt) => MealDetailsScreen()
       },
@@ -45,9 +43,7 @@ class MyApp extends StatelessWidget {
 
         print(
             'WARNING: Unknown page route "$routeName" with arguments "$routeArgs"');
-        return MaterialPageRoute(
-            builder: (context) =>
-                CategoriesScreen(categories: DUMMY_CATEGORIES));
+        return MaterialPageRoute(builder: (context) => TabsScreen());
       },
     );
   }
