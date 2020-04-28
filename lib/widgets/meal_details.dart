@@ -14,17 +14,17 @@ class MealDetails extends StatelessWidget {
   final List<String> ingredients;
   final List<String> steps;
 
-  const MealDetails(
-      {Key key,
-      @required this.id,
-      @required this.title,
-      @required this.imageUrl,
-      @required this.duration,
-      @required this.complexity,
-      @required this.affordability,
-      @required this.ingredients,
-      @required this.steps})
-      : super(key: key);
+  const MealDetails({
+    Key key,
+    @required this.id,
+    @required this.title,
+    @required this.imageUrl,
+    @required this.duration,
+    @required this.complexity,
+    @required this.affordability,
+    @required this.ingredients,
+    @required this.steps,
+  }) : super(key: key);
 
   String get complexityText {
     switch (complexity) {
@@ -70,6 +70,7 @@ class MealDetails extends StatelessWidget {
             duration: duration,
             complexity: complexity,
             affordability: affordability,
+            removeItem: () { throw Exception('Not reachable: Can only delete in category meals screen'); },
           ),
           buildTitle(context, 'Ingredients'),
           buildContainer(

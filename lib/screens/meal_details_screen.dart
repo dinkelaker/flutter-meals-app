@@ -20,17 +20,23 @@ class MealDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(selectedMealTitle),
       ),
-      body: 
-          MealDetails(
-            id: selectedMeal.id,
-            title: selectedMeal.title,
-            imageUrl: selectedMeal.imageUrl,
-            complexity: selectedMeal.complexity,
-            affordability: selectedMeal.affordability,
-            duration: selectedMeal.duration,
-            ingredients: selectedMeal.ingredients,
-            steps: selectedMeal.steps
-          ),
+      body: MealDetails(
+          id: selectedMeal.id,
+          title: selectedMeal.title,
+          imageUrl: selectedMeal.imageUrl,
+          complexity: selectedMeal.complexity,
+          affordability: selectedMeal.affordability,
+          duration: selectedMeal.duration,
+          ingredients: selectedMeal.ingredients,
+          steps: selectedMeal.steps),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.delete,
+        ),
+        onPressed: () {
+          Navigator.of(context).pop(selectedMealId);
+        },
+      ),
     );
   }
 }
