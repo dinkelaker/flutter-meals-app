@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/models/meal.dart';
 
 import './categories_screen.dart';
 import './favorites_screen.dart';
@@ -8,6 +9,10 @@ import '../widgets/main_drawer.dart';
 import '../dummy_data.dart';
 
 class TabsScreen extends StatefulWidget {
+  final List<Meal> favoriteMeals;
+
+  TabsScreen(this.favoriteMeals);
+
   @override
   State<StatefulWidget> createState() {
     return _TabsScreenState();
@@ -15,10 +20,7 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  final List<Widget> _tabPages = [
-    CategoriesScreen(categories: DUMMY_CATEGORIES),
-    FavoritesScreen(),
-  ];
+  List<Widget> _tabPages;
 
   int selectedTabPageIndex = 0;
 
@@ -26,6 +28,15 @@ class _TabsScreenState extends State<TabsScreen> {
     setState(() {
       selectedTabPageIndex = value;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _tabPages = [
+      CategoriesScreen(categories: DUMMY_CATEGORIES),
+      FavoritesScreen(widget.favoriteMeals),
+    ];
   }
 
   @override

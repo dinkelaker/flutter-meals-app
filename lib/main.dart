@@ -39,6 +39,25 @@ class _MyAppState extends State<MyApp> {
 
   List<Meal> _availableMeals = DUMMY_MEALS;
 
+  List<Meal> _favoriteMeals = [];
+
+  void _toggleFavorite(String mealId) {
+    final existingIndex = _favoriteMeals.indexWhere((meal) => meal.id == mealId);
+    if (existingIndex >= 0) {
+      setState(() {
+        _favoriteMeals.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        _favoriteMeals.add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
+      });
+    }
+  }
+
+  bool _isMealFavorite(String mealId) {
+    return _favoriteMeals.any((meal) => meal.id == mealId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -62,9 +81,9 @@ class _MyAppState extends State<MyApp> {
       ),
       initialRoute: '/',
       routes: {
-        '/': (ctxt) => TabsScreen(),
+        '/': (ctxt) => TabsScreen(_favoriteMeals),
         CategoryMealsScreen.routeName: (ctxt) => CategoryMealsScreen(_availableMeals),
-        MealDetailsScreen.routeName: (ctxt) => MealDetailsScreen(),
+        MealDetailsScreen.routeName: (ctxt) => MealDetailsScreen(_toggleFavorite, _isMealFavorite),
         FiltersScreen.routeName: (ctxt) => FiltersScreen(filters, _setFilters),
       },
       // onGenerateRoute: (settings) {
@@ -76,7 +95,7 @@ class _MyAppState extends State<MyApp> {
 
         print(
             'WARNING: Unknown page route "$routeName" with arguments "$routeArgs"');
-        return MaterialPageRoute(builder: (context) => TabsScreen());
+        return MaterialPageRoute(builder: (context) => TabsScreen(_favoriteMeals));
       },
     );
   }
